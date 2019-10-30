@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'LandmarkAngularFrontEnd'`, () => {
+  it(`should have as title 'Landmark'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('LandmarkAngularFrontEnd');
+    expect(app.title).toEqual('Landmark');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('LandmarkAngularFrontEnd app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Landmark app is running!');
   });
 });
