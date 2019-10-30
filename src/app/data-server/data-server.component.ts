@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataServerComponent implements OnInit 
 {
+  landmarkLog = 'Landmark hits 1, 2, 3...';
+  
   constructor() 
   { }
 
