@@ -10,7 +10,4 @@ export class AppComponent
 {
   title = 'Landmark';
   subtitle = 'Reading Historical Markers for Those On the Go';
-
-  gpsLocationLatitude = 100;
-  gpsLocationLongitude = 200;
 }
