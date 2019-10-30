@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './data-server.component.html',
   styleUrls: ['./data-server.component.css']
 })
-export class DataServerComponent implements OnInit {
+export class DataServerComponent implements OnInit 
+{
+  constructor() 
+  { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() 
+  {
   }
 
 }
