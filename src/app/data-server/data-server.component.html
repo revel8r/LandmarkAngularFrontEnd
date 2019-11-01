@@ -1,5 +1,8 @@
 <h2>Nearby Landmarks</h2>
-<textarea style="width:100%; height:600">
-{{landmarkLog}}
-</textarea>
+
+<ul class="landmarks">
+    <li *ngFor="let l of landmarks; let i=index;">
+        <span>{{i+1}}</span> {{l.Title}}: {{l.Description}}
+    </li>
+</ul>
 
