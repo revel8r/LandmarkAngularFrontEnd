@@ -1,8 +1,11 @@
 <h2>Nearby Landmarks</h2>
 
 <ul class="landmarks">
-    <li *ngFor="let l of landmarks; let i=index;">
-        <span>{{i+1}}</span> {{l.Title}}: {{l.Description}}
+    <li *ngFor="let l of landmarks">
+        Longitude: {{l.Longitude}}<br/>
+        Latitude: {{l.Latitude}} <br/>
+        Title: {{l.Title}}<br/>
+        Description: {{l.Description}}
     </li>
 </ul>
 

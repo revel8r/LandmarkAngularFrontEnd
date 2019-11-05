@@ -10,8 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DataServerComponent implements OnInit 
 {
-  landmarkLog = 'Landmark hits 1, 2, 3...';
-  
   landmarks:any = [];
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
@@ -23,9 +21,8 @@ export class DataServerComponent implements OnInit
 
   getLocalLandmarks(latitude, longitude, distance)
   {
-    console.log("Starting getLocalLandmarks");
     this.landmarks = [];
-    this.rest.getLocalLandmarks(longitude, latitude, distance).subscribe((data: {}) => 
+    this.rest.getLocalLandmarks(longitude, latitude, distance).subscribe((data: {}) =>
     {
       console.log(data);
       this.landmarks = data;

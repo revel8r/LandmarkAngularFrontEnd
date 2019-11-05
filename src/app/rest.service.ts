@@ -27,20 +27,21 @@ export class RestService
     return body || { };
   }
 
-  getLocalLandmarks(longitude, latitude, distance): Observable<any> 
+  getLocalLandmarks(longitude, latitude, distance): Observable<any>
   {
-    const headers = new HttpHeaders({ 'Content-Type': 'text/plain'});
-    //    this.result = this.http.get
-    //    (
-    //      endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance).pipe(
-    //      map(this.extractData)
-    //    );
-    
     this.result = this.http.get
     (
-      endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance, 
-      {responseType: 'text', headers}
-    );  
+      endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance
+    ).pipe
+    (
+        map(this.extractData)
+    );
+    
+    //this.result = this.http.get
+    //(
+    //  endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance, 
+    //  {responseType: 'text', headers}
+    //);  
 
     return this.result;
   }
