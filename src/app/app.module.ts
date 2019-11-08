@@ -6,7 +6,27 @@ import { DataServerComponent } from './data-server/data-server.component';
 import { GpsComponent } from './gps/gps.component';
 import { SpeechComponent } from './speech/speech.component';
 
-@NgModule({
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
+
+import { RestService } from './rest.service';
+
+const appRoutes: Routes = 
+[
+  {
+    path: 'landmarks',
+    component: DataServerComponent,
+    data: { title: 'landmarks' }
+  },
+  { path: '',
+    redirectTo: '/landmarks',
+    pathMatch: 'full'
+  }
+];
+
+@NgModule
+({
   declarations: [
     AppComponent,
     DataServerComponent,
@@ -14,9 +34,11 @@ import { SpeechComponent } from './speech/speech.component';
     SpeechComponent
   ],
   imports: [
-    BrowserModule
-  ],
-  providers: [],
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    BrowserModule,
+    HttpClientModule ],
+  providers: [RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
