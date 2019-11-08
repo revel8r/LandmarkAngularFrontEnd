@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div>
   <h1>
     {{title}}
   </h1>
@@ -8,14 +8,14 @@
 </div>
 
 <!-- User's gps location -->
-<div style="width:100%">
+<div style="width:50%">
   <h2>Your Location</h2><br />
-  <label>Latitude: {{gpsLocationLatitude}}</label><br />
-  <label>Longitude: {{gpsLocationLongitude}}</label>
+  <label>Latitude: {{currentLongitude}}</label><br />
+  <label>Longitude: {{currentLatitude}}</label>
 </div>
 
 <!-- Nearby landmarks. -->
-<div style="width:100%">
+<div style="width:50%;">
     <router-outlet></router-outlet>
 </div>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GpsComponent } from './gps/gps.component';
 
 @Component(
 {
@@ -11,6 +12,8 @@ export class AppComponent
   title = 'Landmark';
   subtitle = 'Reading Historical Markers for Those On the Go';
 
-  gpsLocationLatitude = 100;
-  gpsLocationLongitude = 200;
+  currentGPS = new GpsComponent();
+
+  currentLongitude = this.currentGPS.longitude;
+  currentLatitude = this.currentGPS.latitude;
 }
