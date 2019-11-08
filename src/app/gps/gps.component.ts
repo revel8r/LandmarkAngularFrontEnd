@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component(
+{
   selector: 'app-gps',
   templateUrl: './gps.component.html',
   styleUrls: ['./gps.component.css']

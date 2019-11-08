@@ -11,7 +11,6 @@ export class AppComponent
 {
   title = 'Landmark';
   subtitle = 'Reading Historical Markers for Those On the Go';
-
   currentGPS = new GpsComponent();
 
   currentLongitude = this.currentGPS.longitude;
