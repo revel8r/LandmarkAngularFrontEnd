@@ -12,13 +12,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DataServerComponent implements OnInit 
 {
   landmarks:any = [];
-  currentGPS = new GpsComponent();
+  currentGPS: any;
+  promiseResult: any;
+  latitude: any;
+  longitude: any;
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() 
   {
-    this.getLocalLandmarks(this.currentGPS.longitude, this.currentGPS.latitude, this.currentGPS.distance);
+    this.currentGPS = new GpsComponent();
+    this.promiseResult = this.currentGPS.getLocation().then
+    (
+      () => {
+              this.latitude = this.currentGPS.geolocationPosition.coords.latitude;
+              this.longitude = this.currentGPS.geolocationPosition.coords.longitude;
+
+              this.getLocalLandmarks(
+                this.longitude, 
+                this.latitude, 
+                this.currentGPS.distance);            
+            },
+      () => { console.log("Error on getLocation processing") }
+    );  
   }
 
   getLocalLandmarks(latitude, longitude, distance)

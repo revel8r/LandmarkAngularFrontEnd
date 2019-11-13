@@ -19,8 +19,6 @@ export class GpsComponent implements OnInit
 
   constructor() 
   {
-    this.longitude = -77.1288;
-    this.latitude = 38.8528;
     this.distance = 5;
   }
 
