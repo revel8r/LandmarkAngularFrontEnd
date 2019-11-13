@@ -7,12 +7,20 @@ import { GpsComponent } from './gps/gps.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent 
+export class AppComponent
 {
   title = 'Landmark';
   subtitle = 'Reading Historical Markers for Those On the Go';
-  currentGPS = new GpsComponent();
+  latitude: any;
+  longitude: any;
 
-  currentLongitude = this.currentGPS.longitude;
-  currentLatitude = this.currentGPS.latitude;
+  currentGPS = new GpsComponent();
+  promiseResult = this.currentGPS.getLocation().then
+  (
+    () => {
+            this.latitude = this.currentGPS.geolocationPosition.coords.latitude;
+            this.longitude = this.currentGPS.geolocationPosition.coords.longitude
+          },
+    () => { console.log("Error on getLocation processing") }
+  );
 }
