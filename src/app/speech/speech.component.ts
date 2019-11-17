@@ -5,11 +5,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './speech.component.html',
   styleUrls: ['./speech.component.css']
 })
-export class SpeechComponent implements OnInit {
-
+export class SpeechComponent implements OnInit 
+{
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
   }
 
+  speak(whatToSay)
+  {
+    var utterance = new SpeechSynthesisUtterance(whatToSay);
+
+    window.speechSynthesis.speak(utterance);   
+  }
 }
