@@ -4,11 +4,6 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 const endpoint = 'api/Landmark/';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-};
 
 @Injectable
 ({
@@ -36,12 +31,6 @@ export class RestService
     (
         map(this.extractData)
     );
-    
-    //this.result = this.http.get
-    //(
-    //  endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance, 
-    //  {responseType: 'text', headers}
-    //);  
 
     return this.result;
   }

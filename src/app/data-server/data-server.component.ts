@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RestService } from '../rest.service';
 import { GpsComponent } from '../gps/gps.component';
+import { SpeechComponent } from '../speech/speech.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ export class DataServerComponent implements OnInit
   promiseResult: any;
   latitude: any;
   longitude: any;
+  speech: SpeechComponent;
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
@@ -31,7 +33,7 @@ export class DataServerComponent implements OnInit
               this.getLocalLandmarks(
                 this.longitude, 
                 this.latitude, 
-                this.currentGPS.distance);            
+                this.currentGPS.distance);
             },
       () => { console.log("Error on getLocation processing") }
     );  
@@ -42,8 +44,20 @@ export class DataServerComponent implements OnInit
     this.landmarks = [];
     this.rest.getLocalLandmarks(longitude, latitude, distance).subscribe((data: {}) =>
     {
-      console.log(data);
+      //console.log(data);
       this.landmarks = data;
+               
+      //console.log(this.landmarks.length);
+
+      this.speech = new SpeechComponent();
+
+      this.landmarks.forEach(landmark => 
+      {
+        this.speech.speak("Longitude: " + landmark.Longitude);
+        this.speech.speak("Latitude: " + landmark.Latitude);
+        this.speech.speak(landmark.Title);
+        this.speech.speak(landmark.Description);
+      });
     });
   }
 }
