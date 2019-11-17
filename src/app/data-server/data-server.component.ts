@@ -44,10 +44,10 @@ export class DataServerComponent implements OnInit
     this.landmarks = [];
     this.rest.getLocalLandmarks(longitude, latitude, distance).subscribe((data: {}) =>
     {
-      console.log(data);
+      //console.log(data);
       this.landmarks = data;
                
-      console.log(this.landmarks.length);
+      //console.log(this.landmarks.length);
 
       this.speech = new SpeechComponent();
 
