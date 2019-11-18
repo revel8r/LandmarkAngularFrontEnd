@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpeechComponent implements OnInit 
 {
-  constructor() { }
+  voices: any;
+ 
+  constructor() 
+  { 
+    this.voices = window.speechSynthesis.getVoices();
+
+    console.log('Voices.length = ' + this.voices.length);
+    this.voices.forEach(voice => 
+    {
+          console.log(voice.name);
+    });
+  }
 
   ngOnInit() 
   {
@@ -16,14 +27,8 @@ export class SpeechComponent implements OnInit
   speak(whatToSay)
   {
     var utterance = new SpeechSynthesisUtterance(whatToSay);
-    var voices = window.speechSynthesis.getVoices();
-    /*console.log('Voices.length = ' + voices.length);
-    voices.forEach(voice => 
-    {
-      console.log(voice.name);
-    });*/
 
-    utterance.voice = voices.filter(function(voice) { return voice.name == 'Microsoft Mark - English (United States)'; })[0];
+    utterance.voice = this.voices.filter(function(voice) { return voice.name == 'Microsoft Mark - English (United States)'; })[0];
     
     window.speechSynthesis.speak(utterance);   
   }
