@@ -7,29 +7,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpeechComponent implements OnInit 
 {
-  voices: any;
+  voices: any[];
+  voice: any;
  
   constructor() 
   { 
-    this.voices = window.speechSynthesis.getVoices();
-
-    console.log('Voices.length = ' + this.voices.length);
-    this.voices.forEach(voice => 
-    {
-          console.log(voice.name);
-    });
   }
 
   ngOnInit() 
   {
   }
 
-  speak(whatToSay)
+  speak(whatToSay, voice)
   {
     var utterance = new SpeechSynthesisUtterance(whatToSay);
 
-    utterance.voice = this.voices.filter(function(voice) { return voice.name == 'Microsoft Mark - English (United States)'; })[0];
+    utterance.voice = voice;
     
+    console.log("utterance.voice: " + utterance.voice.name);
+
     window.speechSynthesis.speak(utterance);   
+  }
+
+  getVoices()
+  {
+    let promise = new Promise(resolve => 
+    {
+      window.speechSynthesis.onvoiceschanged = resolve;  
+    });
+
+    return promise;
   }
 }

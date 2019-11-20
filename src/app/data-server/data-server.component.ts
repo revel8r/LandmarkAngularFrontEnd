@@ -51,13 +51,45 @@ export class DataServerComponent implements OnInit
 
       this.speech = new SpeechComponent();
 
-      this.landmarks.forEach(landmark => 
+      this.promiseResult = this.speech.getVoices().then(() => 
       {
-        this.speech.speak("Longitude: " + landmark.Longitude);
-        this.speech.speak("Latitude: " + landmark.Latitude);
-        this.speech.speak(landmark.Title);
-        this.speech.speak(landmark.Description);
+        const synth = window.speechSynthesis;
+
+        this.speech.voices = synth.getVoices();
+        console.log(this.speech.voices);
+
+        const voice = this.speech.voices.filter(function(voice) 
+        { 
+          return voice.name == 'Google US English'; 
+        })[0];
+
+        console.log("voice: " + voice.name);
+
+        this.landmarks.forEach(landmark => 
+        {
+            this.speech.speak("Longitude: " + landmark.Longitude, voice);
+            this.speech.speak("Latitude: " + landmark.Latitude, voice);
+            this.speech.speak(landmark.Title, voice);
+            this.speech.speak(landmark.Description, voice);
+        });
+      })
+      .catch((e) => 
+      {
+        console.log("error: ", e);
+ 
+        const voice = this.speech.voices.filter(function(voice) 
+        { 
+          return voice.name == 'Microsoft Zira - English (United States)'; 
+        })[0];       
+
+        this.landmarks.forEach(landmark => 
+          {
+              this.speech.speak("Longitude: " + landmark.Longitude, voice);
+              this.speech.speak("Latitude: " + landmark.Latitude, voice);
+              this.speech.speak(landmark.Title, voice);
+              this.speech.speak(landmark.Description, voice);
+          });
       });
-    });
+    })
   }
 }
