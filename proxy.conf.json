@@ -1,6 +1,6 @@
 {  
    "/api/*": {  
-      "target": "http://localhost:58691",  
+      "target": "http://revel8r.net",  
       "secure": false,  
       "logLevel": "debug"  
    }  

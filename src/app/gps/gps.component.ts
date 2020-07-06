@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { delay } from 'rxjs/operators';
 
 @Component(
 {
@@ -24,21 +23,29 @@ export class GpsComponent implements OnInit
 
   ngOnInit() 
   {
+    this.getLocation();
   }
 
   getLocation()
   {
     let promise = new Promise((resolve, reject) =>
     {
-      if (window.navigator && window.navigator.geolocation) 
+      if ('geolocation' in navigator) 
       {
-        window.navigator.geolocation.getCurrentPosition
+        navigator.geolocation.getCurrentPosition
         (
           position => 
           {
-                this.geolocationPosition = position;
-                
-                resolve();
+            this.latitude = position.coords.latitude;
+            this.longitude = position.coords.longitude;
+            
+            //this.latitude = 27.641731;
+            //this.longitude = -80.401209;
+
+            console.info('gps.component.ts: this.latitude = ' + this.latitude +
+                         'this.longitude =  ' + this.longitude);
+
+            resolve();
           },
           error => 
           {
@@ -61,7 +68,7 @@ export class GpsComponent implements OnInit
       }
       else
       {
-        console.log("This brows does not support geolocation services.");
+        console.log("This browser does not support geolocation services.");
         reject();
       };
     });

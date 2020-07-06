@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'api/Landmark/';
+const endpoint = 'http://revel8r.net/api/Landmark/Get?';
 
 @Injectable
 ({
@@ -19,14 +19,19 @@ export class RestService
   private extractData(res: Response) 
   {
     let body = res;
+
+    console.info('rest.service.ts response = ' + res.status);
+
     return body || { };
   }
 
   getLocalLandmarks(longitude, latitude, distance): Observable<any>
   {
-    this.result = this.http.get
+    console.info('rest.service.ts: endpoint = ' + endpoint);
+
+    this.result = this.http.get<any>
     (
-      endpoint + '?longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance
+      endpoint + 'longitude=' + longitude + '&latitude=' + latitude + '&distance=' + distance
     ).pipe
     (
         map(this.extractData)

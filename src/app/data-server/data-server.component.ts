@@ -27,8 +27,8 @@ export class DataServerComponent implements OnInit
     this.promiseResult = this.currentGPS.getLocation().then
     (
       () => {
-              this.latitude = this.currentGPS.geolocationPosition.coords.latitude;
-              this.longitude = this.currentGPS.geolocationPosition.coords.longitude;
+              this.latitude = this.currentGPS.latitude;
+              this.longitude = this.currentGPS.longitude;
 
               this.getLocalLandmarks(
                 this.longitude, 
@@ -53,8 +53,8 @@ export class DataServerComponent implements OnInit
 
       this.landmarks.forEach(landmark => 
       {
-        this.speech.speak("Longitude: " + landmark.Longitude);
-        this.speech.speak("Latitude: " + landmark.Latitude);
+        //this.speech.speak("Longitude: " + landmark.Longitude);
+        //this.speech.speak("Latitude: " + landmark.Latitude);
         this.speech.speak(landmark.Title);
         this.speech.speak(landmark.Description);
       });

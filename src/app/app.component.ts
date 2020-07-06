@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { GpsComponent } from './gps/gps.component';
-import { DataServerComponent } from './data-server/data-server.component';
 
 @Component(
 {
@@ -20,8 +19,11 @@ export class AppComponent
   promiseResult = this.currentGPS.getLocation().then
   (
     () => {
-            this.latitude = this.currentGPS.geolocationPosition.coords.latitude;
-            this.longitude = this.currentGPS.geolocationPosition.coords.longitude;
+            this.latitude = this.currentGPS.latitude;
+            this.longitude = this.currentGPS.longitude;
+            
+            console.info('app.component.ts: this.latitude = ' + this.latitude +
+                         'this.longitude =  ' + this.longitude);
           },
     () => { console.log("Error on getLocation processing") }
   );
